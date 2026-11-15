@@ -6,8 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GamingApplication {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         SpringApplication.run(GamingApplication.class, args);
+        System.out.println("========================= Gaming Init Done =========================");
     }
 
 }

@@ -1,3 +1,23 @@
+server:
+  port: 10104
+
 spring:
   application:
     name: ms-module-gaming
+
+  cloud:
+    nacos:
+      # Nacos 3.3 客户端端口 8848，已映射到宿主机 28848
+      server-addr: ${MS_NACOS_ADDR:127.0.0.1:28848}
+      username: ${MS_NACOS_USERNAME:nacos}
+      password: ${MS_NACOS_PASSWORD:7891919}
+      discovery:
+        namespace: ${MS_NACOS_NAMESPACE:296e62c6-81e4-44ea-9891-ef3569a17ba5}
+      config:
+        namespace: ${MS_NACOS_NAMESPACE:296e62c6-81e4-44ea-9891-ef3569a17ba5}
+
+  config:
+    # 共享配置在前，服务私有配置在后（后者覆盖前者）
+    import:
+      - optional:nacos:ms-common.yaml?group=DEFAULT_GROUP&refreshEnabled=true
+      - optional:nacos:ms-module-gaming.yaml?group=DEFAULT_GROUP&refreshEnabled=true
